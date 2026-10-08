@@ -1,0 +1,1 @@
+import React from'react';export default function SectionHeading({eyebrow,title,text}){return <div className="max-w-3xl mb-12"><div className="eyebrow mb-4">{eyebrow}</div><h2 className="heading">{title}</h2>{text&&<p className="text-white/55 text-lg mt-5 max-w-2xl leading-relaxed">{text}</p>}</div>}
