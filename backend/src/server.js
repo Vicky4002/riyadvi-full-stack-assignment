@@ -10,9 +10,10 @@ import applicationRoutes from './routes/applications.js';
 import adminRoutes from './routes/admin.js';
 
 dotenv.config();
-
 const app = express();
 const port = process.env.PORT || 5000;
+
+app.set('trust proxy', 1);
 
 const allowedOrigin = process.env.FRONTEND_URL || 'http://localhost:5173';
 
