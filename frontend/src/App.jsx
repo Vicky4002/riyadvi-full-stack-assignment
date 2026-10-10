@@ -5,7 +5,7 @@ import { gsap } from 'gsap'; import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 import Layout from './components/Layout'; import Scene3D from './components/Scene3D'; import ServiceOrbit from './components/ServiceOrbit'; import ProjectVisual from './components/ProjectVisual'; import SectionHeading from './components/SectionHeading'; import LeadForm from './components/LeadForm'; import { services, projects, posts, jobs } from './data/content';
 gsap.registerPlugin(ScrollTrigger);
-const API_URL = (import.meta.env.VITE_API_URL || '').replace(/\/$/, '');
+const API_URL = (import.meta.env.VITE_API_URL || 'https://riyadvi-full-stack-assignment-production.up.railway.app').replace(/\/$/, '');
 
 function useReveal() { const ref = useRef(); useEffect(() => { const ctx = gsap.context(() => { gsap.utils.toArray('.v3-reveal').forEach((el, i) => gsap.fromTo(el, { y: 50, opacity: 0 }, { y: 0, opacity: 1, duration: .8, delay: (i % 4) * .04, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 86%', once: true } })); }, ref); return () => ctx.revert() }, []); return ref }
 
