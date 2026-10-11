@@ -1,3 +1,4 @@
+import '../premium.css';
 import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowDownRight, ArrowRight, ArrowUpRight, Braces, Boxes, Code2, Database, Layers3, Orbit, Play, Sparkles, Workflow } from 'lucide-react';
