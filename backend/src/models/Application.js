@@ -1,13 +1,13 @@
 import mongoose from 'mongoose';
-
-const ApplicationSchema=new mongoose.Schema({
-  name:{type:String,required:true,trim:true,maxlength:120},
-  email:{type:String,required:true,lowercase:true,trim:true},
-  phone:{type:String,trim:true,maxlength:40},
-  resume:{type:String,trim:true},
-  position:{type:String,required:true,trim:true,maxlength:160},
-  message:{type:String,trim:true,maxlength:5000},
-  status:{type:String,enum:['new','reviewing','shortlisted','rejected'],default:'new'}
+const applicationSchema = new mongoose.Schema({
+  name:{type:String,required:true,trim:true,minlength:2,maxlength:100},
+  email:{type:String,required:true,trim:true,lowercase:true,maxlength:180},
+  phone:{type:String,required:true,trim:true,maxlength:40},
+  company:{type:String,trim:true,maxlength:140,default:''},
+  position:{type:String,required:true,trim:true,maxlength:140},
+  message:{type:String,trim:true,maxlength:3000,default:''},
+  resume:{filename:{type:String,required:true},contentType:{type:String,required:true},size:{type:Number,required:true},data:{type:Buffer,required:true}},
+  status:{type:String,enum:['new','reviewing','shortlisted','closed'],default:'new'}
 },{timestamps:true});
-
-export default mongoose.model('Application',ApplicationSchema);
+applicationSchema.index({createdAt:-1});
+export default mongoose.model('Application',applicationSchema);

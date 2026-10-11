@@ -1,0 +1,11 @@
+RIYADVI ASSIGNMENT REBUILD — START HERE
+
+1. Install Node.js 20+.
+2. Open two terminals in this folder.
+3. In terminal 1: cd backend, copy .env.example to .env, set MONGODB_URI and CLIENT_ORIGIN=http://localhost:5173, run npm install, then npm run dev.
+4. In terminal 2: cd frontend, run npm install, then npm run dev.
+5. Open http://localhost:5173 and verify http://localhost:5000/api/health says database=connected.
+6. Submit each form only after the database is connected.
+
+Do not upload backend/.env or put database credentials in GitHub.
+The archive uploaded with the conversation could not be extracted, so this is a clean source rebuild from the assignment brief rather than a verified patch of the previous working folder.

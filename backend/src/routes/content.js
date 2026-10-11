@@ -1,0 +1,13 @@
+import { Router } from 'express';
+import { services, cases, posts, jobs } from '../content.js';
+const router = Router();
+const expose = (items) => ({ items, count: items.length });
+router.get('/services', (_req,res)=>res.json(expose(services)));
+router.get('/services/:slug',(req,res)=>{const item=services.find(x=>x.slug===req.params.slug);if(!item)return res.status(404).json({message:'Service not found'});res.json({item})});
+router.get('/cases',(_req,res)=>res.json(expose(cases)));
+router.get('/cases/:slug',(req,res)=>{const item=cases.find(x=>x.slug===req.params.slug);if(!item)return res.status(404).json({message:'Case study not found'});res.json({item})});
+router.get('/posts',(_req,res)=>res.json(expose(posts.map(({body,...p})=>p))));
+router.get('/posts/:slug',(req,res)=>{const item=posts.find(x=>x.slug===req.params.slug);if(!item)return res.status(404).json({message:'Article not found'});res.json({item})});
+router.get('/jobs',(_req,res)=>res.json(expose(jobs)));
+router.get('/jobs/:slug',(req,res)=>{const item=jobs.find(x=>x.slug===req.params.slug);if(!item)return res.status(404).json({message:'Job not found'});res.json({item})});
+export default router;

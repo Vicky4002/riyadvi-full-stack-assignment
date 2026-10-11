@@ -1,173 +1,104 @@
-# Riyadvi Software Technologies — Premium Full-Stack Website
+# Riyadvi — Digital Experience Rebuild
 
-A production-oriented corporate website built for the Riyadvi full-stack interview assignment. The project combines a premium interactive frontend, meaningful 3D, reusable content architecture, Express APIs and MongoDB-ready lead management.
+A responsive, multi-page corporate website concept for the Riyadvi Software Technologies full-stack interview assignment. The interface uses a black-and-gold visual system, lazy-loaded interactive WebGL scenes, scroll-triggered reveals, smooth scrolling, responsive/mobile rendering, reduced-motion support, and an Express/MongoDB API.
 
-## Assignment coverage
-
-- Premium + futuristic + professional visual system using Riyadvi gold/black branding
-- React/Vite frontend with reusable components and dynamic route templates
-- Three.js / React Three Fiber 3D hero and interactive service visuals
-- GSAP scroll-driven animation and Lenis smooth scrolling
-- Dynamic service, portfolio, blog and careers route architecture
-- Contact and consultation lead capture
-- Six-step Business Health Checkup stored through the backend
-- Software Project Planning Guide lead magnet with downloadable PDF
-- Career application flow with resume capture (2MB data-URL demo limit)
-- MongoDB/Mongoose persistence for leads and applications
-- Validation, error handling, rate limiting and security headers
-- Lightweight admin dashboard for enquiries and applications
-- Responsive/mobile-aware visual system
+> **Important:** Case studies and job listings in this demo are illustrative sample content. They must not be represented as verified client work or confirmed live vacancies. Confirm factual company copy and contact details with Riyadvi before submission.
 
 ## Stack
 
-Frontend: React, Vite, React Router, Tailwind CSS, Three.js, React Three Fiber, Drei, GSAP, Lenis, Lucide
-Backend: Node.js, Express.js, Mongoose, MongoDB Atlas, Helmet, CORS, express-rate-limit
+- **Frontend:** React 18, Vite, React Router, Three.js, React Three Fiber, Drei, GSAP + ScrollTrigger, Lenis, Lucide icons.
+- **Backend:** Node.js, Express, Mongoose, MongoDB Atlas, Helmet, CORS, express-rate-limit, Multer for resume uploads, Nodemailer for optional SMTP notifications.
+- **3D and motion:** Three.js through React Three Fiber + Drei; GSAP ScrollTrigger for scroll reveals; Lenis smooth scrolling; CSS keyframe micro-motion and reduced-motion support. These are used in the experience rather than merely installed.
+
+## Pages and routes
+
+- `/` — home, 3D hero, services, transformation process, case studies, technology constellation, insights.
+- `/services` and `/services/:slug` — six individual service pages.
+- `/portfolio` and `/portfolio/:slug` — portfolio list and individual case studies.
+- `/about` — company narrative, principles and interactive 3D.
+- `/blog` and `/blog/:slug` — insight index and individual articles.
+- `/careers` and `/careers/:slug` — job index and detail pages.
+- `/contact`, `/consultation`, `/health-checkup` and `/business-health-checkup`, `/project-planning-guide` and `/software-project-planning-guide`, `/admin` — business conversion and protected admin paths.
 
 ## Run locally
 
-### Backend
+Requirements: Node.js 20+ and npm.
+
+### 1. Configure MongoDB
+
+```bash
+cd backend
+copy .env.example .env  (Windows CMD; PowerShell: Copy-Item .env.example .env)
+```
+
+Edit `backend/.env` and set a valid `MONGODB_URI`. For MongoDB Atlas, use the application database user and the correct cluster host; URL-encode special characters in the password. Add your current IP in Atlas Network Access, or use a restricted deployment network rule appropriate for your environment. Never commit `.env` or share its credentials.
+
+Set `CLIENT_ORIGIN=http://localhost:5173` for local development. To enable email notifications, set `SMTP_HOST`, `SMTP_PORT`, `SMTP_SECURE`, `SMTP_USER`, `SMTP_PASS`, `MAIL_FROM` and `NOTIFY_EMAIL`. Notifications are optional; lead persistence does not depend on SMTP. Set a long random `ADMIN_API_KEY` to enable `/admin`.
+
+### 2. Start the API
 
 ```bash
 cd backend
 npm install
-copy .env.example .env
 npm run dev
 ```
 
-Set `MONGODB_URI` and `FRONTEND_URL` in `backend/.env`.
+Check `http://localhost:5000/api/health`. A healthy database should report `"database":"connected"`.
 
-### Frontend
+### 3. Start the frontend
 
-Open another terminal:
+In a second terminal:
 
 ```bash
 cd frontend
+copy .env.example .env  (Windows CMD; PowerShell: Copy-Item .env.example .env)
 npm install
 npm run dev
 ```
 
-The Vite development server proxies `/api` to `http://localhost:5000`.
+Open `http://localhost:5173`. If the API is hosted elsewhere, create `frontend/.env` with `VITE_API_URL=https://your-api-host/api` and restart Vite.
 
-## MongoDB Atlas
+## API
 
-Example:
+- `GET /api/health` — service and database status.
+- `GET /api/services`, `GET /api/services/:slug` — service content.
+- `GET /api/cases`, `GET /api/cases/:slug` — case-study content.
+- `GET /api/posts`, `GET /api/posts/:slug` — blog content.
+- `GET /api/jobs`, `GET /api/jobs/:slug` — career content.
+- `POST /api/leads` — validated general enquiries persisted to MongoDB.
+- `POST /api/contact`, `/api/consultation`, `/api/health-checkup`, `/api/lead-magnet` — compatible typed lead endpoints.
+- `POST /api/applications` — multipart resume upload (PDF/DOC/DOCX, max 5 MB) plus career application details.
+- `GET /api/admin/summary`, `GET /api/admin/leads` — admin-key-protected counts and recent enquiries/applications.
+- `GET /api/admin/applications/:id/resume` — admin-key-protected resume download.
 
-```env
-PORT=5000
-MONGODB_URI=mongodb+srv://USERNAME:PASSWORD@cluster.mongodb.net/riyadvi?retryWrites=true&w=majority
-FRONTEND_URL=http://localhost:5173
-# ADMIN_KEY=use-a-long-random-secret
-```
+The business health checkup is a six-step flow and stores its answers with the lead. The planning guide is downloadable after the lead-magnet form is accepted.
 
-Never commit `.env` or expose the database password. URL-encode special characters in the password when placing it in the connection URI.
-
-## API endpoints
-
-```text
-GET  /api/health
-POST /api/contact
-POST /api/consultation
-POST /api/health-checkup
-POST /api/lead-magnet
-POST /api/applications
-GET  /api/admin/summary
-```
-
-The API validates required fields, validates email addresses, returns consistent JSON responses, and protects the admin endpoint when `ADMIN_KEY` is configured.
-
-## Main routes
-
-```text
-/
-/services
-/services/:id
-/portfolio
-/portfolio/:id
-/about
-/blog
-/blog/:slug
-/careers
-/careers/:slug
-/contact
-/consultation
-/business-health-checkup
-/software-project-planning-guide
-/admin
-```
-
-## Dynamic architecture
-
-Service data → reusable service template → individual service routes.
-
-Portfolio data → reusable case-study template → individual project routes.
-
-Job data → reusable job template → individual career routes.
-
-Blog data → reusable article template → individual article routes.
-
-This avoids separate hardcoded page implementations for every item and leaves the content layer ready for a future CMS/API.
-
-## Performance strategy
-
-- Low-poly 3D geometry
-- Device-pixel-ratio limits
-- Suspense around 3D scenes
-- Reduced visual workload on small screens
-- Scroll animations isolated in reusable components
-- Visual assets kept local and lightweight where possible
-- No animation should block the primary content or conversion flow
-
-For production, run a Lighthouse pass and add route-level lazy loading/code splitting before final submission.
+The lead endpoint includes basic validation, a honeypot field and rate limiting. Application uploads have a separate rate limit and file type/size checks. Production hardening should also include monitoring, backups, a privacy/retention policy, secure secret management and a review of resume retention before real customer data is processed.
 
 ## AI Tools Used
 
-See `docs/AI-USAGE.md`. Major tools used in this project include ChatGPT and Bolt-style AI-assisted development workflows. Generated code was reviewed, debugged and manually integrated into the React/Express architecture rather than submitted unchanged.
+### ChatGPT
+- **Purpose:** Interpret the supplied assignment, plan the route/content architecture, draft initial React and Express implementation, and help debug integration risks.
+- **Example prompt:** “Rebuild the Riyadvi full-stack assignment as a premium multi-page React experience with meaningful 3D/animation, service/case-study/blog/career detail routes, MongoDB-backed lead forms, and a documented API.”
+- **Generated:** Initial implementation scaffold, content model, reusable components, page structure, CSS design system, API routes and documentation.
+- **Manual changes/review required:** Validate company facts and real portfolio/career content; configure Atlas credentials; run dependency installation and browser testing; verify responsive layouts, keyboard navigation, form submission and deployment; adjust any generated code based on test results.
+- **Why selected:** To accelerate planning, code drafting and debugging while keeping the implementation editable and understandable.
 
-## Git history
+### Developer validation checklist
 
-Use meaningful commits when moving the project into the final repository, for example:
+- [ ] Install dependencies in frontend and backend.
+- [ ] Set MongoDB Atlas URI and confirm `/api/health` reports connected.
+- [ ] Submit contact, consultation, health-checkup and lead-magnet forms; confirm records and details appear in MongoDB.
+- [ ] Submit a career application with a PDF/DOC/DOCX resume and verify the protected download endpoint.
+- [ ] Configure SMTP and verify notification delivery, if credentials are available.
+- [ ] Configure `ADMIN_API_KEY` and verify `/admin` displays records only with the correct key.
+- [ ] Test all listed routes and unknown slugs.
+- [ ] Test mobile widths, keyboard focus, reduced motion and WebGL fallback.
+- [ ] Run `npm run build` in frontend and resolve all errors.
+- [ ] Replace illustrative content with approved company information.
+- [ ] Configure deployment environment variables, verify deployed API and frontend, and test production form submission.
+- [ ] Commit source code and provide the repository and live URL in the submission.
 
-```text
-feat: implement interactive 3D hero
-feat: create dynamic service templates
-feat: create case study routes
-feat: add lead capture APIs
-feat: add business health checkup
-feat: add lead magnet download flow
-feat: add careers application flow
-feat: add admin lead dashboard
-perf: optimize 3D and mobile experience
-fix: improve responsive navigation
-```
+## Deployment notes
 
-## Production deployment
-
-Recommended architecture:
-
-```text
-Vercel (frontend)
-        ↓
-Render / Railway (Express API)
-        ↓
-MongoDB Atlas
-```
-
-Production environment variables:
-
-```text
-MONGODB_URI
-FRONTEND_URL
-PORT
-ADMIN_KEY (optional but recommended)
-```
-
-Before submission, verify every form against the production API, confirm the database writes successfully, run a mobile pass, run Lighthouse, and test every dynamic route.
-
-## AI-assisted development documentation
-
-The assignment requires documenting the AI workflow. See:
-
-- `docs/AI-USAGE.md`
-- `docs/TECHNICAL-WALKTHROUGH.md`
-
-These explain tool purpose, prompt examples, generated areas, manual changes and the frontend → API → database architecture.
+Deploy the frontend as a Vite static site and the backend as a Node web service. Set `MONGODB_URI`, `CLIENT_ORIGIN` (exact deployed frontend origin), and `PORT` in the backend environment. Set `VITE_API_URL` to the deployed API base ending in `/api` before building the frontend. Ensure SPA route fallback is enabled by the frontend host so nested React Router URLs load on refresh.
