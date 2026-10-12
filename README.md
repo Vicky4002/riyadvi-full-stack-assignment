@@ -67,10 +67,10 @@ The public API serves built-in content when no database overrides exist. Once an
 ## API
 
 - `GET /api/health` — service and database status.
-- `GET /api/services`, `GET /api/services/:slug` — service content.
-- `GET /api/cases`, `GET /api/cases/:slug` — case-study content.
-- `GET /api/posts`, `GET /api/posts/:slug` — blog content.
-- `GET /api/jobs`, `GET /api/jobs/:slug` — career content.
+- `GET /api/content/services`, `GET /api/content/services/:slug` — service content.
+- `GET /api/content/cases`, `GET /api/content/cases/:slug` — case-study content.
+- `GET /api/content/posts`, `GET /api/content/posts/:slug` — blog content.
+- `GET /api/content/jobs`, `GET /api/content/jobs/:slug` — career content.
 - `POST /api/leads` — validated general enquiries persisted to MongoDB.
 - `POST /api/contact`, `/api/consultation`, `/api/health-checkup`, `/api/lead-magnet` — compatible typed lead endpoints.
 - `POST /api/applications` — multipart resume upload (PDF/DOC/DOCX, max 5 MB) plus career application details.
