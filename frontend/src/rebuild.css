@@ -1,0 +1,36 @@
+/* Global design tokens and page system for Riyadvi's premium rebuild. */
+:root{--gold:#8ce8e7;--gold-light:#b5f5ef;--muted:#9aa6b5;--line:rgba(220,233,246,.12);--panel:#0d1117;--max:1320px;color-scheme:dark}
+html,body{background:#07090c;color:#f1f4f8}
+body{font-family:Inter,Manrope,system-ui,sans-serif}
+.site-header{background:rgba(7,9,12,.88);border-bottom:1px solid rgba(220,233,246,.12);backdrop-filter:blur(18px)}
+.brand-mark{color:#f1f4f8}.brand-mark span{color:#8ce8e7}.brand-copy{color:#eef4f8}.brand-copy small{color:#7f8c9b}
+.nav a{color:#9aa6b5}.nav a.active,.nav a:hover{color:#8ce8e7}.header-cta,.mobile-cta{background:#8ce8e7;color:#071012!important;border-color:#8ce8e7}
+.menu-toggle{color:#f1f4f8}
+.footer{background:#080b10;border-top:1px solid rgba(220,233,246,.12)}.footer p,.footer-links a,.footer-address,.footer-bottom{color:#91a0af}.footer-links b{color:#f1f4f8}
+.wrap{width:min(1320px,calc(100% - 72px))}
+.eyebrow{color:#8ce8e7}.eyebrow>span:first-child{background:#8ce8e7;box-shadow:0 0 12px rgba(140,232,231,.45)}
+h1 em,h2 em,h3 em,.heading em{color:#8ce8e7}
+.page-intro h1,.hero h1,.section h2,.split-section h2,.heading{color:#f1f4f8}
+.page-intro p,.hero-lede,.section-copy,.services-intro-side p{color:#9aa6b5}
+.button-gold{background:#8ce8e7;border-color:#8ce8e7;color:#071012!important}.button-gold:hover{background:#b5f5ef;border-color:#b5f5ef}.button-quiet{border-color:rgba(220,233,246,.2);color:#e2e8ee}.button-quiet:hover{border-color:rgba(140,232,231,.55)}
+.glass,.lead-panel,.guide-preview,.wizard-panel,.admin-access,.case-card,.service-card,.job-card,.article-card,.health-review div{background:linear-gradient(145deg,#111821,#0a0d12);border-color:rgba(220,233,246,.12)}
+.service-card:hover,.case-card:hover,.article-card:hover,.job-card:hover{border-color:rgba(140,232,231,.4)}
+.service-card h3,.case-card h3,.article-card h3,.job-card h3,.lead-copy h2,.guide-preview h2,.wizard-panel h2{color:#f1f4f8}
+.service-card p,.case-card p,.article-card p,.job-card p,.lead-copy p,.guide-preview p,.wizard-panel p{color:#9aa6b5}
+.service-icon,.service-num,.service-tag,.service-card-bottom,.case-meta,.case-art-label,.transform-num,.admin-grid b{color:#8ce8e7}
+.case-art,.service-mini-art,.hero-visual,.tech-constellation,.process-scene,.cta-orb{background-color:#0b1119}
+.hero-glow{background:radial-gradient(circle,rgba(140,232,231,.14),transparent 68%)}
+.hero-visual{border:1px solid rgba(140,232,231,.18)}
+.float-label{background:rgba(7,12,18,.85);border-color:rgba(140,232,231,.2);color:#dce6ed}
+.status-dot,.lead-dot{background:#8ce8e7;box-shadow:0 0 12px rgba(140,232,231,.5)}
+.ticker{background:#0a0d12;border-block-color:rgba(220,233,246,.12)}.ticker-track{color:#9aa6b5}.ticker-track b{color:#8ce8e7}
+.section{border-color:rgba(220,233,246,.12)}.services-all-link,.text-link,.services-all-link svg{color:#8ce8e7}
+.transform-step{border-color:rgba(220,233,246,.12)}.transform-step h3{color:#f1f4f8}.transform-step p{color:#9aa6b5}.transform-track{background:rgba(220,233,246,.1)}.transform-track span{background:#8ce8e7}
+.tech-node{background:#101821;border-color:rgba(140,232,231,.25);color:#dbe6ee}.tech-center{border-color:rgba(140,232,231,.3)}
+.cta-section{border-color:rgba(220,233,246,.12);background:linear-gradient(135deg,#101820,#090c11)}.cta-section h2{color:#f1f4f8}.cta-section p{color:#9aa6b5}
+input,textarea,select{background:#080d13!important;color:#edf3f7!important;border-color:rgba(220,233,246,.17)!important}input:focus,textarea:focus,select:focus{outline:1px solid rgba(140,232,231,.55);border-color:#8ce8e7!important}
+label,.form-privacy{color:#a0adba}.form-success{color:#8ce8e7}.form-error{color:#ff9d9d}.hp-field{opacity:0;position:absolute;pointer-events:none}
+.wizard-progress button.active{border-color:rgba(140,232,231,.5);background:rgba(140,232,231,.07)}.wizard-progress span,.health-review span{color:#8ce8e7}.health-success{border-color:rgba(140,232,231,.25);background:linear-gradient(135deg,rgba(140,232,231,.1),rgba(255,255,255,.025))}.health-success svg{color:#8ce8e7}
+.admin-grid b{color:#8ce8e7}.admin-key-row .field{background:#080d13}
+@media(max-width:800px){.wrap{width:calc(100% - 36px)}.nav{background:#090d12;border-left:1px solid rgba(220,233,246,.12)}.nav a{color:#d9e3ea}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
