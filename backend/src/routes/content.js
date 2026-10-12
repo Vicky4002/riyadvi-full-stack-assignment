@@ -1,13 +1,43 @@
 import { Router } from 'express';
 import { services, cases, posts, jobs } from '../content.js';
+import ContentEntry from '../models/ContentEntry.js';
+import mongoose from 'mongoose';
+
 const router = Router();
+const defaults = { services, cases, posts, jobs };
+const allowed = new Set(Object.keys(defaults));
 const expose = (items) => ({ items, count: items.length });
-router.get('/services', (_req,res)=>res.json(expose(services)));
-router.get('/services/:slug',(req,res)=>{const item=services.find(x=>x.slug===req.params.slug);if(!item)return res.status(404).json({message:'Service not found'});res.json({item})});
-router.get('/cases',(_req,res)=>res.json(expose(cases)));
-router.get('/cases/:slug',(req,res)=>{const item=cases.find(x=>x.slug===req.params.slug);if(!item)return res.status(404).json({message:'Case study not found'});res.json({item})});
-router.get('/posts',(_req,res)=>res.json(expose(posts.map(({body,...p})=>p))));
-router.get('/posts/:slug',(req,res)=>{const item=posts.find(x=>x.slug===req.params.slug);if(!item)return res.status(404).json({message:'Article not found'});res.json({item})});
-router.get('/jobs',(_req,res)=>res.json(expose(jobs)));
-router.get('/jobs/:slug',(req,res)=>{const item=jobs.find(x=>x.slug===req.params.slug);if(!item)return res.status(404).json({message:'Job not found'});res.json({item})});
+
+async function getCollection(name) {
+  const fallback = defaults[name] || [];
+  if (mongoose.connection.readyState !== 1) return fallback;
+  const records = await ContentEntry.find({ collection: name, published: true }).sort({ createdAt: 1 }).lean();
+  if (!records.length) return fallback;
+  const overrides = new Map(records.map(record => [record.slug, record.data]));
+  const merged = fallback.map(item => ({ ...item, ...(overrides.get(item.slug) || {}) }));
+  const known = new Set(fallback.map(item => item.slug));
+  for (const record of records) if (!known.has(record.slug)) merged.push(record.data);
+  return merged;
+}
+
+router.get('/:collection', async (req, res, next) => {
+  try {
+    if (!allowed.has(req.params.collection)) return res.status(404).json({ message: 'Content collection not found.' });
+    const items = await getCollection(req.params.collection);
+    const safeItems = req.params.collection === 'posts' ? items.map(({ body, ...item }) => item) : items;
+    return res.json(expose(safeItems));
+  } catch (error) { next(error); }
+});
+
+router.get('/:collection/:slug', async (req, res, next) => {
+  try {
+    if (!allowed.has(req.params.collection)) return res.status(404).json({ message: 'Content collection not found.' });
+    const items = await getCollection(req.params.collection);
+    const item = items.find(entry => entry.slug === req.params.slug);
+    if (!item) return res.status(404).json({ message: 'Content item not found.' });
+    const safeItem = req.params.collection === 'posts' ? (({ body, ...rest }) => rest)(item) : item;
+    return res.json({ item: safeItem });
+  } catch (error) { next(error); }
+});
+
 export default router;
