@@ -13,7 +13,7 @@ ChatGPT was used for architecture planning, implementation, debugging, and docum
 React/Vite → REST API → Express → Mongoose → MongoDB Atlas. The backend includes request validation, Helmet, CORS, rate limits, enquiry and career-application persistence, resume uploads, and optional email notifications.
 
 ## 5. Dynamic content
-`GET /api/services`, `/api/cases`, `/api/posts`, and `/api/jobs` serve page content. Built-in data provides a safe fallback. When MongoDB contains published content overrides, the API merges those overrides into the fallback collections and returns the result to the reusable frontend components.
+`GET /api/content/services`, `/api/content/cases`, `/api/content/posts`, and `/api/content/jobs` serve page content. Built-in data provides a safe fallback. When MongoDB contains published content overrides, the API merges those overrides into the fallback collections and returns the result to the reusable frontend components.
 
 The protected `/admin` page includes a Content Studio. With `ADMIN_API_KEY` configured, an administrator can create/update JSON content overrides, publish/unpublish them, refresh the content list, and delete an override to restore the built-in fallback. These writes are stored in the `ContentEntry` MongoDB collection.
 
