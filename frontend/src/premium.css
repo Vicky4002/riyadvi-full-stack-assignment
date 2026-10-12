@@ -164,3 +164,71 @@
 @media(prefers-reduced-motion:reduce){
   .pr-marquee-track,.pr-insight-art-orbit{animation:none!important}
 }
+
+
+/* Fix the actual grid item wrappers: Reveal renders an extra div around each card. */
+.pr-home .service-grid,
+.pr-home .case-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: stretch;
+  gap: clamp(14px, 1.8vw, 22px);
+}
+.pr-home .service-grid > .service-reveal,
+.pr-home .case-grid > div {
+  display: flex;
+  min-width: 0;
+  height: 100%;
+  min-height: 0;
+}
+.pr-home .service-grid > .service-reveal > .service-card,
+.pr-home .case-grid > div > .case-card {
+  width: 100%;
+  min-width: 0;
+  height: 100%;
+}
+.pr-home .service-card {
+  display: flex;
+  flex-direction: column;
+}
+.pr-home .service-card-copy {
+  flex: 1 0 auto;
+}
+.pr-home .case-card {
+  display: flex;
+  flex-direction: column;
+}
+.pr-home .case-card > p {
+  flex: 1 0 auto;
+}
+.pr-home .pr-hero-inner,
+.pr-home .pr-architecture-grid,
+.pr-home .pr-tech-layout,
+.pr-home .pr-insights-grid {
+  min-width: 0;
+}
+.pr-home .pr-hero-stage,
+.pr-home .pr-architecture-visual,
+.pr-home .pr-tech-layout > *,
+.pr-home .pr-insights-grid > * {
+  min-width: 0;
+}
+@media (max-width: 1000px) {
+  .pr-home .service-grid,
+  .pr-home .case-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 700px) {
+  .pr-home .service-grid,
+  .pr-home .case-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .pr-home .service-card {
+    min-height: 0;
+  }
+  .pr-home .service-grid > .service-reveal,
+  .pr-home .case-grid > div {
+    width: 100%;
+  }
+}
