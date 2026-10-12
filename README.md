@@ -58,6 +58,12 @@ npm run dev
 
 Open `http://localhost:5173`. If the API is hosted elsewhere, create `frontend/.env` with `VITE_API_URL=https://your-api-host/api` and restart Vite.
 
+## Dynamic content studio
+
+Open `/admin`, enter the backend `ADMIN_API_KEY`, and load the dashboard. The Content Studio lets an administrator create or update JSON overrides for `services`, `cases`, `posts`, and `jobs`; publish/unpublish overrides; and delete an override to restore the built-in content. Overrides are stored in MongoDB in the `contententries` collection. Keep the admin key only in the backend environment and never set it as a `VITE_` variable.
+
+The public API serves built-in content when no database overrides exist. Once an override is published, its fields are merged into the matching built-in record, or a new item is added to that collection.
+
 ## API
 
 - `GET /api/health` — service and database status.
@@ -102,3 +108,11 @@ The lead endpoint includes basic validation, a honeypot field and rate limiting.
 ## Deployment notes
 
 Deploy the frontend as a Vite static site and the backend as a Node web service. Set `MONGODB_URI`, `CLIENT_ORIGIN` (exact deployed frontend origin), and `PORT` in the backend environment. Set `VITE_API_URL` to the deployed API base ending in `/api` before building the frontend. Ensure SPA route fallback is enabled by the frontend host so nested React Router URLs load on refresh.
+
+## Vercel deployment
+
+For the frontend project, set the Root Directory to `frontend`, the build command to `npm run build`, and the output directory to `dist`. Set `VITE_API_URL` to the deployed backend's `/api` URL. The frontend lockfile was removed because it was stale and contradicted `package.json`; Vercel will resolve dependencies from the current manifest during install.
+
+For the backend, deploy the `backend` directory to Railway or another Node hosting provider. Set `MONGODB_URI`, `CLIENT_ORIGIN` to the exact deployed frontend origin, and `ADMIN_API_KEY` to a long random secret. Optional SMTP variables enable notifications but are not required for MongoDB persistence.
+
+Before resubmission, verify a clean production build, `/api/health`, a real enquiry submission, a career application upload, the admin dashboard, Content Studio publishing, responsive navigation, and the 3D hero on desktop and mobile.
