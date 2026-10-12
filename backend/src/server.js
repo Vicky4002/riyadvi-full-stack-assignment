@@ -9,7 +9,7 @@ import applicationRoutes from './routes/applications.js';
 import adminRoutes from './routes/admin.js';
 const app = express();
 const port = Number(process.env.PORT) || 5000;
-const allowedOrigins = (process.env.CLIENT_ORIGIN || 'http://localhost:5173').split(',').map(s=>s.trim());
+const allowedOrigins = [...new Set(['http://localhost:5173', 'https://riyadvi-assesment.vercel.app', 'https://riyadvi.up.railway.app', ...(process.env.CLIENT_ORIGIN || '').split(',').map(s => s.trim()).filter(Boolean)])];
 app.disable('x-powered-by');
 app.use(helmet());
 app.use(cors({origin(origin,callback){if(!origin || allowedOrigins.includes(origin)) return callback(null,true);return callback(new Error('Origin is not allowed by CORS'));},methods:['GET','POST','DELETE','OPTIONS'],allowedHeaders:['Content-Type','x-admin-key']}));
