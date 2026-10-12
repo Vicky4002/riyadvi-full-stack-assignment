@@ -1,0 +1,49 @@
+name: Riyadvi CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main, riyadvi-premium-rebuild]
+
+permissions:
+  contents: read
+
+jobs:
+  frontend-build:
+    name: Frontend production build
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+      - name: Build for production
+        run: npm run build
+
+  backend-check:
+    name: Backend syntax and tests
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+      - name: Check server syntax
+        run: node --check src/server.js
+      - name: Run backend tests
+        run: npm test
