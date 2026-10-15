@@ -296,3 +296,17 @@
 @media(max-width:1000px){.pr-trust-band{grid-template-columns:1fr}.pr-trust-items{grid-template-columns:repeat(2,minmax(0,1fr))}.pr-case-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.pr-contact-section .lead-panel{grid-template-columns:1fr;gap:24px}}
 @media(max-width:700px){.pr-trust-items{gap:12px}.pr-trust-items>div{padding-left:11px}.pr-case-grid{grid-template-columns:1fr}.pr-case-art{min-height:190px}.pr-principle-grid{grid-template-columns:1fr}.pr-principle-card{min-height:0;border-right:0;border-bottom:1px solid var(--pr-line);padding:23px}.pr-principle-card:last-child{border-bottom:0}.pr-principle-card>svg{margin-top:20px}.pr-principles-section,.pr-contact-section{padding:75px 0}.pr-contact-section .lead-panel{padding:20px}.pr-filter-row{gap:6px}.pr-filter-button{padding:9px 10px;font-size:9px}}
 @media(prefers-reduced-motion:reduce){.pr-case-card,.pr-principle-card,.pr-filter-button{transition:none!important}.pr-marquee-track{animation:none!important}}
+
+.pr-testimonials-section{padding:105px 0 112px;border-top:1px solid var(--pr-line);background:radial-gradient(ellipse at 80% 10%,rgba(140,232,231,.045),transparent 34%),#07090c}
+.pr-testimonial-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}
+.pr-testimonial-card{display:flex;flex-direction:column;min-height:230px;margin:0;padding:24px;border:1px solid var(--pr-line);background:rgba(255,255,255,.022)}
+.pr-testimonial-stars{color:var(--pr-cyan);font-size:12px;letter-spacing:.18em}
+.pr-testimonial-card blockquote{margin:22px 0 28px;font-size:clamp(17px,1.8vw,22px);line-height:1.45;letter-spacing:-.025em;color:#e7edf3;flex:1}
+.pr-testimonial-card figcaption{display:flex;align-items:center;gap:11px;border-top:1px solid var(--pr-line);padding-top:16px}
+.pr-testimonial-avatar{display:grid;place-items:center;width:34px;height:34px;border:1px solid rgba(140,232,231,.28);background:rgba(140,232,231,.07);color:var(--pr-cyan);font-size:10px;font-weight:700}
+.pr-testimonial-card figcaption strong,.pr-testimonial-card figcaption small{display:block}
+.pr-testimonial-card figcaption strong{font-size:10px;font-weight:600;color:#dce5ec}
+.pr-testimonial-card figcaption small{font-size:9px;color:#82909d;margin-top:5px}
+.pr-testimonials-section .pr-content-note a{color:var(--pr-cyan);text-decoration:underline;text-underline-offset:3px}
+@media(max-width:850px){.pr-testimonial-grid{grid-template-columns:1fr}.pr-testimonial-card{min-height:0}.pr-testimonial-card blockquote{margin:18px 0 24px}}
+@media(max-width:700px){.pr-testimonials-section{padding:75px 0}}
