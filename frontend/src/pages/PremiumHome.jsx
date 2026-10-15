@@ -1,4 +1,5 @@
 import '../premium.css';
+import TechnologyPlayground from '../components/TechnologyPlayground.jsx';
 import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowDownRight, ArrowRight, ArrowUpRight, Braces, Boxes, CheckCircle2, Code2, Database, Layers3, Orbit, Sparkles, Workflow } from 'lucide-react';
@@ -116,6 +117,8 @@ export default function PremiumHome() {
     </div></section>
 
     <section className="pr-tech-section"><div className="pr-wrap pr-tech-layout"><div className="pr-reveal"><Eyebrow>THE TOOLKIT</Eyebrow><h2>Use the right tech.<br/><em>Make it matter.</em></h2><p>From WebGL and animation to API design and data persistence, the stack should support the experience—not become the experience.</p><div className="pr-tech-tags"><span>Three.js / R3F</span><span>GSAP</span><span>Lenis</span><span>React</span><span>REST APIs</span><span>MongoDB</span><span>Java / Spring Boot</span><span>Python</span><span>Cloud</span></div></div><TechConstellation/></div></section>
+
+    <TechnologyPlayground />
 
     <section className="pr-insights-section pr-wrap"><div className="pr-section-heading pr-reveal"><div><Eyebrow>FIELD NOTES</Eyebrow><h2>Ideas into <em>action.</em></h2></div><Link className="pr-text-link" to="/blog">All insights <ArrowUpRight size={16}/></Link></div><div className="pr-insights-grid">{livePosts.slice(0, 2).map((post, i) => <Link to={`/blog/${post.slug}`} className="pr-insight-card pr-reveal" key={post.slug}><div className="pr-insight-art"><span className="pr-insight-art-number">0{i + 1}</span><div className="pr-insight-art-orbit"><Sparkles size={28}/></div><span className="pr-insight-art-label">RIYADVI / FIELD NOTES</span></div><div className="pr-insight-meta"><span>{post.category}</span><span>{post.read}</span></div><h3>{post.title}</h3><p>{post.excerpt}</p><span className="pr-text-link">Read article <ArrowUpRight size={15}/></span></Link>)}</div></section>
 
