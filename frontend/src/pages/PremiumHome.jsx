@@ -71,7 +71,7 @@ export default function PremiumHome() {
 
     <section className="pr-trust-band pr-wrap" aria-label="Delivery principles">
       <div className="pr-trust-intro"><span className="pr-live-dot"/><span>ONE CONNECTED DIGITAL PARTNER</span></div>
-      <div className="pr-trust-items"><div><strong>06 core capabilities</strong><span>Strategy through delivery</span></div><div><strong>3D + motion</strong><span>Interactive experiences</span></div><div><strong>API-connected content</strong><span>Dynamic content architecture</span></div><div><strong>MongoDB workflows</strong><span>Persistent form submissions</span></div></div>
+      <div className="pr-trust-items"><div><strong>Founded in 2021</strong><span>Company foundation</span></div><div><strong>06 core services</strong><span>From web to immersive tech</span></div><div><strong>Australia + Canada</strong><span>International market presence</span></div><div><strong>3D + motion</strong><span>Interactive digital experiences</span></div></div>
     </section>
 
     <section className="pr-marquee" aria-label="Our disciplines"><div className="pr-marquee-track">{Array.from({ length: 2 }).map((_, i) => <span key={i}>PRODUCT ENGINEERING <b>✳</b> IMMERSIVE 3D <b>✳</b> DIGITAL STRATEGY <b>✳</b> INTELLIGENT WORKFLOWS <b>✳</b> EXPERIENCE DESIGN <b>✳</b></span>)}</div></section>
@@ -103,6 +103,16 @@ export default function PremiumHome() {
     <section className="pr-principles-section"><div className="pr-wrap">
       <div className="pr-section-heading pr-reveal"><div><Eyebrow>THE WORKING RELATIONSHIP</Eyebrow><h2>Good work starts<br/>with <em>good principles.</em></h2></div><p>We don't invent client testimonials or performance numbers. We make our approach clear—and let the work demonstrate it.</p></div>
       <div className="pr-principle-grid">{principles.map((item) => <article className="pr-principle-card pr-reveal" key={item.number}><span>{item.number} / PRINCIPLE</span><CheckCircle2 size={21}/><h3>{item.title}</h3><p>{item.copy}</p></article>)}</div>
+    </div></section>
+
+    <section className="pr-testimonials-section"><div className="pr-wrap">
+      <div className="pr-section-heading pr-reveal"><div><Eyebrow>CLIENT FEEDBACK</Eyebrow><h2>Good work is<br/><em>felt by people.</em></h2></div><p>Short excerpts from customer feedback published on Riyadvi’s official website.</p></div>
+      <div className="pr-testimonial-grid">
+        <figure className="pr-testimonial-card pr-reveal"><div className="pr-testimonial-stars" aria-label="Customer review">★★★★★</div><blockquote>“Best website development company… good service.”</blockquote><figcaption><span className="pr-testimonial-avatar">GL</span><span><strong>Geetha Lakshmi Selvaraj</strong><small>Website development feedback</small></span></figcaption></figure>
+        <figure className="pr-testimonial-card pr-reveal"><div className="pr-testimonial-stars" aria-label="Customer review">★★★★★</div><blockquote>“One of the best company for app development.”</blockquote><figcaption><span className="pr-testimonial-avatar">MF</span><span><strong>Mohamed Faris</strong><small>App development feedback</small></span></figcaption></figure>
+        <figure className="pr-testimonial-card pr-reveal"><div className="pr-testimonial-stars" aria-label="Customer review">★★★★★</div><blockquote>“They are quick &amp; easy to deal with.”</blockquote><figcaption><span className="pr-testimonial-avatar">GK</span><span><strong>Geetha Karthik</strong><small>Customer service feedback</small></span></figcaption></figure>
+      </div>
+      <p className="pr-content-note">Review excerpts are reproduced from the <a href="https://www.riyadvisoftwaretechnologies.com/about" target="_blank" rel="noreferrer">official Riyadvi website</a>; wording is shortened for layout.</p>
     </div></section>
 
     <section className="pr-tech-section"><div className="pr-wrap pr-tech-layout"><div className="pr-reveal"><Eyebrow>THE TOOLKIT</Eyebrow><h2>Use the right tech.<br/><em>Make it matter.</em></h2><p>From WebGL and animation to API design and data persistence, the stack should support the experience—not become the experience.</p><div className="pr-tech-tags"><span>Three.js / R3F</span><span>GSAP</span><span>Lenis</span><span>React</span><span>REST APIs</span><span>MongoDB</span><span>Java / Spring Boot</span><span>Python</span><span>Cloud</span></div></div><TechConstellation/></div></section>
