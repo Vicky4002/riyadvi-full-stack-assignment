@@ -71,7 +71,7 @@ export default function PremiumHome() {
 
     <section className="pr-trust-band pr-wrap" aria-label="Delivery principles">
       <div className="pr-trust-intro"><span className="pr-live-dot"/><span>ONE CONNECTED DIGITAL PARTNER</span></div>
-      <div className="pr-trust-items"><div><strong>Founded in 2021</strong><span>Company foundation</span></div><div><strong>06 core services</strong><span>From web to immersive tech</span></div><div><strong>Australia + Canada</strong><span>International market presence</span></div><div><strong>3D + motion</strong><span>Interactive digital experiences</span></div></div>
+      <div className="pr-trust-items"><div><strong>70+</strong><span>Completed projects</span></div><div><strong>100+</strong><span>Clients served</span></div><div><strong>100%</strong><span>Client satisfaction</span></div><div><strong>Global reach</strong><span>Australia · Canada</span></div></div>
     </section>
 
     <section className="pr-marquee" aria-label="Our disciplines"><div className="pr-marquee-track">{Array.from({ length: 2 }).map((_, i) => <span key={i}>PRODUCT ENGINEERING <b>✳</b> IMMERSIVE 3D <b>✳</b> DIGITAL STRATEGY <b>✳</b> INTELLIGENT WORKFLOWS <b>✳</b> EXPERIENCE DESIGN <b>✳</b></span>)}</div></section>
